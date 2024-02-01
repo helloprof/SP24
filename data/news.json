@@ -1,0 +1,38 @@
+[
+    {
+        "id":1,
+        "title":"Jewelry store in Toronto robbed... again",
+        "description":"xyz",
+        "fullText": "xyz",
+        "date":"2024/01/01",
+        "thumbnail":"/images/1.png",
+        "region":5
+    },
+    {
+        "id":2,
+        "title":"Jewelry store in Toronto robbed... again",
+        "description":"xyz",
+        "fullText": "xyz",
+        "date":"2024/01/01",
+        "thumbnail":"/images/1.png",
+        "region":5
+    },
+    {
+        "id":3,
+        "title":"Jewelry store in Toronto robbed... again",
+        "description":"xyz",
+        "fullText": "xyz",
+        "date":"2024/01/01",
+        "thumbnail":"/images/1.png",
+        "region":5
+    },
+    {
+        "id":4,
+        "title":"Jewelry store in Toronto robbed... again",
+        "description":"xyz",
+        "fullText": "xyz",
+        "date":"2024/01/01",
+        "thumbnail":"/images/1.png",
+        "region":5
+    }
+]

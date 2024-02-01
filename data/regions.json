@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "region": "world"
+    },
+    {
+        "id": 2,
+        "region": "europe"
+    },
+    {
+        "id": 3,
+        "region": "middle-east"
+    },
+    {
+        "id": 4,
+        "region": "africa"
+    },
+    {
+        "id": 5,
+        "region": "canada"
+    }
+]
