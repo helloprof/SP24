@@ -15,9 +15,22 @@ app.get("/", (req, res) => {
 })
 
 app.get("/news", (req, res) => {
+
+    if (req.query.article) {
+        res.send(req.query.article)
+    } 
     newsService.getNews().then((data) => {
         res.sendFile(path.join(__dirname, "/views/news.html"))
     })
+})
+
+app.get("/news/:id", (req, res) => {
+    newsService.getNewsByID(req.params.id).then((news) => {
+        res.send(news)
+    }).catch((err) => {
+        console.log(err)
+    })
+
 })
 
 app.get("/about", (req, res) => {
@@ -27,6 +40,10 @@ app.get("/about", (req, res) => {
     
     res.send("about")
 })
+
+app.use((req, res, next) => {
+    res.status(404).end();
+});
 
 newsService.initialize().then(() => {
     app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
