@@ -25,7 +25,20 @@ function getNews() {
     })
 }
 
+function getNewsByID(id) {
+    return new Promise((resolve, reject) => {
+        let foundArticle = news.find((newsArticle) => newsArticle.id == id)
+        if (foundArticle) {
+            resolve(foundArticle)
+
+        } else {
+            reject("article ID not found")
+        }
+    })
+}
+
 module.exports = {
     initialize,
-    getNews
+    getNews,
+    getNewsByID
 }
