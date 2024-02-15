@@ -16,12 +16,21 @@ app.get("/", (req, res) => {
 
 app.get("/news", (req, res) => {
 
-    if (req.query.article) {
-        res.send(req.query.article)
-    } 
-    newsService.getNews().then((data) => {
-        res.sendFile(path.join(__dirname, "/views/news.html"))
-    })
+    if (req.query.region) {
+        newsService.getNewsByRegion(req.query.region).then((newsByRegion) => {
+            res.send(newsByRegion)
+        }).catch((err) => {
+            // res.send(err)
+            console.log(err)
+        })
+    } else {
+        newsService.getNews().then((data) => {
+            res.sendFile(path.join(__dirname, "/views/news.html"))
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
 })
 
 app.get("/news/:id", (req, res) => {
