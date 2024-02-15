@@ -37,8 +37,21 @@ function getNewsByID(id) {
     })
 }
 
+function getNewsByRegion(region) {
+    return new Promise((resolve, reject) => {
+        let foundArticlesByRegion = news.filter((newsArticle) => newsArticle.region == region)
+        if (foundArticlesByRegion) {
+            resolve(foundArticlesByRegion)
+        } else {
+            reject(`articles not found by region ${region}`)
+        }
+    })
+}
+
+
 module.exports = {
     initialize,
     getNews,
-    getNewsByID
+    getNewsByID,
+    getNewsByRegion
 }
