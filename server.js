@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
     // })
     
     res.redirect("/news")
+    console.log("test")
 })
 
 app.get("/news", (req, res) => {
