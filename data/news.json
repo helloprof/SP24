@@ -1,38 +1,38 @@
 [
     {
         "id":1,
-        "title":"Jewelry store in Toronto robbed... again",
+        "title":"Michael Spavor’s lawyer says legal fight with Ottawa is 'resolved'",
         "description":"xyz",
         "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"/images/1.png",
-        "region":5
+        "thumbnail":"https://i0.wp.com/media.globalnews.ca/videostatic/news/sj95uqww1g-33xyp5bfuu/SU_MICHAELS_VMS.jpg?w=1040&quality=70&strip=all",
+        "region":1
     },
     {
         "id":2,
-        "title":"Jewelry store in Toronto robbed... again",
+        "title":"Canadian family of 5 killed in Nashville plane crash identified",
         "description":"xyz",
         "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"/images/1.png",
-        "region":5
+        "thumbnail":"https://toronto.ctvnews.ca/content/dam/ctvnews/en/images/2024/3/5/nashville-plane-crash-1-6795931.jpg",
+        "region":"Canada"
     },
     {
         "id":3,
-        "title":"Jewelry store in Toronto robbed... again",
+        "title":"‘Hypervaccinated’: Doctors study man who’s had 217 COVID-19 vaccines",
         "description":"xyz",
         "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"/images/1.png",
-        "region":5
+        "thumbnail":"https://www.cp24.com/polopoly_fs/1.6796490.1709733590!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
+        "region":"World"
     },
     {
         "id":4,
-        "title":"Jewelry store in Toronto robbed... again",
+        "title":"Albert Einstein College of Medicine Goes Tuition-Free After $1 Billion Donation",
         "description":"xyz",
         "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"/images/1.png",
-        "region":5
+        "thumbnail":"https://www.ctvnews.ca/content/dam/ctvnews/en/images/2024/2/26/dr--ruth-gottesman-1-6784098-1708971631338.jpg",
+        "region":"USA"
     }
 ]
