@@ -1478,8 +1478,8 @@ html {
   margin-top: 0.75rem;
 }
 
-.flex {
-  display: flex;
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -1502,8 +1502,16 @@ html {
   width: 24rem;
 }
 
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .justify-end {
   justify-content: flex-end;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .rounded-box {
