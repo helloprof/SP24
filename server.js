@@ -5,6 +5,7 @@ const newsService = require("./modules/newsService")
 const path = require("path")
 
 app.use(express.static("public"))
+app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
     // newsService.getNews().then((data) => {
@@ -25,8 +26,11 @@ app.get("/news", (req, res) => {
             console.log(err)
         })
     } else {
-        newsService.getNews().then((data) => {
-            res.sendFile(path.join(__dirname, "/views/news.html"))
+        newsService.getNews().then((newsData) => {
+            // res.sendFile(path.join(__dirname, "/views/news.html"))
+            res.render("news", {
+                news: newsData
+            })
         }).catch((err) => {
             console.log(err)
         })
