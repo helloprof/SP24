@@ -6,6 +6,7 @@ const path = require("path")
 
 app.use(express.static("public"))
 app.set("view engine", "ejs")
+app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
     // newsService.getNews().then((data) => {
@@ -38,14 +39,43 @@ app.get("/news", (req, res) => {
 
 })
 
+app.get("/news/add", (req, res) => {
+    // form
+    res.render('newArticle')
+
+})
+
 app.get("/news/:id", (req, res) => {
     newsService.getNewsByID(req.params.id).then((news) => {
         res.send(news)
     }).catch((err) => {
+        res.send(err)
         console.log(err)
     })
 
 })
+
+app.get("/regions", (req, res) => {
+    newsService.getRegions().then((regions) => {
+        res.render('regions', {
+            regions: regions
+        })
+    })
+
+})
+
+app.get("/regions/add", (req,res) => {
+    res.render('newRegion')
+})
+
+app.post("/regions/add", (req, res) => {
+    // console.log(req.body)
+    newsService.addRegion(req.body).then(() => {
+        res.redirect("/regions")
+    })
+})
+
+
 
 app.get("/about", (req, res) => {
     // newsService.getNews().then((data) => {
@@ -56,7 +86,7 @@ app.get("/about", (req, res) => {
 })
 
 app.use((req, res, next) => {
-    res.status(404).end();
+    res.status(404).send("404, client error");
 });
 
 newsService.initialize().then(() => {
