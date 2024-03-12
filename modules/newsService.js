@@ -48,10 +48,34 @@ function getNewsByRegion(region) {
     })
 }
 
+function getRegions() {
+    return new Promise((resolve, reject) => {
+        if (regionsData) {
+            resolve(regionsData)
+        } else {
+            reject("no regions found")
+        }
+    })
+}
+function addRegion(newRegion) {
+    return new Promise((resolve, reject) => {
+        if (newRegion) {
+            newRegion.id = regionsData.length + 1
+            regionsData.push(newRegion)
+            resolve("success")
+        } else {
+            reject("no regions found")
+        }
+    })
+}
+
+
 
 module.exports = {
     initialize,
     getNews,
     getNewsByID,
-    getNewsByRegion
+    getNewsByRegion,
+    getRegions,
+    addRegion
 }
