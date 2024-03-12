@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css" />
+  <title>SP24 News</title>
+</head>
+
+<body>
+  <%- include('partials/navbar') %>
+    <div class="grid grid-cols-4 gap-2">
+
+
+      <% regions.forEach((region) => { %>
+
+
+      <div class="card w-96 bg-base-100 shadow-xl">
+        <figure><img
+            src="<%=region.image%>"
+            alt="article" /></figure>
+        <div class="card-body">
+          <h2 class="card-title"><%=region.region%></h2>
+
+        </div>
+      </div>
+      
+      <% }) %>
+
+    </div>
+
+</body>
+
+</html>
