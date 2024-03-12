@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>SP24 News</title>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <form method="POST" action="/news/add" enctype="multipart/form-data">
+
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="text" class="grow" placeholder="title" name="title" id="title"/>
+            </label>
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="text" class="grow" placeholder="description" name="description" id="description"/>
+            </label>
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="text" class="grow" placeholder="fullText" name="fullText" id="fullText"/>
+            </label>
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="date" class="grow" placeholder="date" name="date" id="date"/>
+            </label>
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="file" class="grow" placeholder="thumbnail" name="thumbnail" id="thumbnail"/>
+            </label>
+            <button class="btn btn-success w-full" type="submit">Submit</button>
+        </form>
+
+</body>
+
+</html>
