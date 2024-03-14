@@ -25,6 +25,13 @@
           <p><%=article.region%></p>
           <div class="card-actions justify-end">
             <a href="/news/<%=article.id%>" class="btn btn-primary">See Details</a>
+            <form class="w-full" action="/summarize" method="POST" enctype="application/x-www-form-urlencoded">
+              <label class="input input-bordered flex items-center gap-2">
+                <input type="text" class="grow" placeholder="Ask GPT-3!" name="articleQuery" id="articleQuery"/>
+            </label>
+            <button class="btn btn-success w-full" type="submit">Submit</button>
+            </form>
+            <p id="response"></p>
           </div>
         </div>
       </div>
