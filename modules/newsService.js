@@ -1,6 +1,36 @@
 let newsData = require("../data/news.json")
 let regionsData = require("../data/regions.json")
 let news = []
+const OpenAI = require("openai")
+const env = require("dotenv")
+env.config()
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+async function summarizeArticle(articleData) {
+  try {
+    // Example prompt message
+    // const promptMessage = articleData;
+
+    // Create a completion request
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "system", content: articleData.articleQuery }],
+      model: "gpt-4",
+    });
+
+    // Log the completion choice
+    console.log(completion.choices[0]);
+    // figure out how to put this data answer into our card's json temp data 
+
+    // do this in client:
+    //    const chatResponse = document.getElementById("response")
+    // chatResponse.innerText = completion.choices[0].message.content
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
 
 function initialize() {
     return new Promise((resolve, reject) => {
@@ -71,11 +101,14 @@ function addRegion(newRegion) {
 
 
 
+
+
 module.exports = {
     initialize,
     getNews,
     getNewsByID,
     getNewsByRegion,
     getRegions,
-    addRegion
+    addRegion,
+    summarizeArticle
 }
