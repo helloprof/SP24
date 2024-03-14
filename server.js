@@ -3,6 +3,10 @@ const app = express(); // obtain the "app" object
 const HTTP_PORT = 8080; // assign a port
 const newsService = require("./modules/newsService")
 const path = require("path")
+const env = require("dotenv")
+env.config()
+
+// process.env.OPENAI_API_KEY
 
 app.use(express.static("public"))
 app.set("view engine", "ejs")
@@ -83,6 +87,13 @@ app.get("/about", (req, res) => {
     // })
     
     res.send("about")
+})
+
+app.post("/summarize", (req, res) => {
+    
+    newsService.summarizeArticle(req.body).then((data) => {
+        console.log(data)
+    })
 })
 
 app.use((req, res, next) => {
