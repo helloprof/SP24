@@ -18,13 +18,13 @@
 
       <div class="card w-96 bg-base-100 shadow-xl">
         <figure><img
-            src="<%=article.thumbnail%>"
+            src="<%=article.image%>"
             alt="article" /></figure>
         <div class="card-body">
           <h2 class="card-title"><%=article.title%></h2>
           <p><%=article.region%></p>
           <div class="card-actions justify-end">
-            <a href="/news/<%=article.id%>" class="btn btn-primary">See Details</a>
+            <a href="/news/<%=article.newsID%>" class="btn btn-primary">See Details</a>
             <form class="w-full" action="/summarize" method="POST" enctype="application/x-www-form-urlencoded">
               <label class="input input-bordered flex items-center gap-2">
                 <input type="text" class="grow" placeholder="Ask GPT-3!" name="articleQuery" id="articleQuery"/>
