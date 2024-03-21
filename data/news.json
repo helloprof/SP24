@@ -1,38 +1,34 @@
 [
     {
-        "id":1,
+        "articleID":1,
         "title":"Michael Spavor’s lawyer says legal fight with Ottawa is 'resolved'",
         "description":"xyz",
-        "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"https://i0.wp.com/media.globalnews.ca/videostatic/news/sj95uqww1g-33xyp5bfuu/SU_MICHAELS_VMS.jpg?w=1040&quality=70&strip=all",
-        "region":1
+        "image":"https://i0.wp.com/media.globalnews.ca/videostatic/news/sj95uqww1g-33xyp5bfuu/SU_MICHAELS_VMS.jpg?w=1040&quality=70&strip=all",
+        "regionID":1
     },
     {
-        "id":2,
+        "articleID":2,
         "title":"Canadian family of 5 killed in Nashville plane crash identified",
         "description":"xyz",
-        "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"https://toronto.ctvnews.ca/content/dam/ctvnews/en/images/2024/3/5/nashville-plane-crash-1-6795931.jpg",
-        "region":"Canada"
+        "image":"https://toronto.ctvnews.ca/content/dam/ctvnews/en/images/2024/3/5/nashville-plane-crash-1-6795931.jpg",
+        "regionID":1
     },
     {
-        "id":3,
+        "articleID":3,
         "title":"‘Hypervaccinated’: Doctors study man who’s had 217 COVID-19 vaccines",
         "description":"xyz",
-        "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"https://www.cp24.com/polopoly_fs/1.6796490.1709733590!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
-        "region":"World"
+        "image":"https://www.cp24.com/polopoly_fs/1.6796490.1709733590!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg",
+        "regionID":1
     },
     {
-        "id":4,
+        "articleID":4,
         "title":"Albert Einstein College of Medicine Goes Tuition-Free After $1 Billion Donation",
         "description":"xyz",
-        "fullText": "xyz",
         "date":"2024/01/01",
-        "thumbnail":"https://www.ctvnews.ca/content/dam/ctvnews/en/images/2024/2/26/dr--ruth-gottesman-1-6784098-1708971631338.jpg",
-        "region":"USA"
+        "image":"https://www.ctvnews.ca/content/dam/ctvnews/en/images/2024/2/26/dr--ruth-gottesman-1-6784098-1708971631338.jpg",
+        "regionID":1
     }
 ]
