@@ -1,5 +1,5 @@
-// let newsData = require("../data/news.json")
-// let regionsData = require("../data/regions.json")
+let newsData = require("../data/news.json")
+let regionsData = require("../data/regions.json")
 // let news = []
 const OpenAI = require("openai")
 
@@ -22,35 +22,23 @@ const Region = sequelize.define('Region', {
         primaryKey: true,
         autoIncrement: true
     },
-    name: {
-        type: Sequelize.STRING
-    },
-    image: {
-        type: Sequelize.STRING
-    }
+    name: Sequelize.STRING,
+    image: Sequelize.STRING
 })
 
-const Article = sequelize.define('Article', {
+const NewsArticle = sequelize.define('NewsArticle', {
     articleID: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    title: {
-        type: Sequelize.STRING
-    },
-    description: {
-        type: Sequelize.TEXT
-    },
-    date: {
-        type: Sequelize.DATE
-    },
-    image: {
-        type: Sequelize.STRING
-    }
+    title: Sequelize.STRING,
+    description: Sequelize.TEXT,
+    date: Sequelize.DATE,
+    image: Sequelize.STRING
 })
 
-Article.belongsTo(Region, { foreignKey: 'regionID' })
+NewsArticle.belongsTo(Region, { foreignKey: 'regionID' })
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -82,18 +70,10 @@ async function summarizeArticle(articleData) {
 
 function initialize() {
     return new Promise((resolve, reject) => {
-        // combine news and regions data and resolve it
-
-        // if (newsData) {
-        //     news = newsData
-        //     resolve("success")
-        // } else {
-        //     reject("no data")
-        // }
 
         sequelize.sync().then(() => {
             console.log("synced")
-            resolve()        
+            resolve()
         }).catch((err) => {
             console.log(err)
             reject(err)
@@ -104,34 +84,22 @@ function initialize() {
 
 function getNews() {
     return new Promise((resolve, reject) => {
-        // if (news) {
-        //     resolve(news)
-        // } else {
-        //     reject("no data")
-        // }
-        Article.findAll().then((newsData) => {
+        NewsArticle.findAll().then((newsData) => {
             resolve(newsData)
         }).catch((err) => {
             reject(err)
-        }) 
+        })
     })
 }
 
 function getNewsByID(id) {
     return new Promise((resolve, reject) => {
-        // let foundArticle = news.find((newsArticle) => newsArticle.id == id)
-        // if (foundArticle) {
-        //     resolve(foundArticle)
-
-        // } else {
-        //     reject("article ID not found")
-        // }
-        Article.findOne({
+        NewsArticle.findOne({
             where: {
                 articleID: id
             }
-        }).then((article) => {
-            resolve(article)
+        }).then((newsArticle) => {
+            resolve(newsArticle)
         }).catch((err) => {
             reject(err)
         })
@@ -140,38 +108,85 @@ function getNewsByID(id) {
 
 function getNewsByRegion(region) {
     return new Promise((resolve, reject) => {
-        let foundArticlesByRegion = news.filter((newsArticle) => newsArticle.region == region)
-        if (foundArticlesByRegion) {
-            resolve(foundArticlesByRegion)
-        } else {
-            reject(`articles not found by region ${region}`)
-        }
+
+        NewsArticle.findAll({
+            where: {
+                regionID: region
+            }
+        }).then((newsArticles) => {
+            resolve(newsArticles)
+        }).catch((err) => {
+            reject(err)
+        })
     })
 }
 
 function getRegions() {
     return new Promise((resolve, reject) => {
-        if (regionsData) {
-            resolve(regionsData)
-        } else {
-            reject("no regions found")
-        }
+        Region.findAll().then((regions) => {
+            resolve(regions)
+        }).catch((err) => {
+            reject(err)
+        })
     })
 }
+
 function addRegion(newRegion) {
     return new Promise((resolve, reject) => {
         if (newRegion) {
-            newRegion.id = regionsData.length + 1
-            regionsData.push(newRegion)
-            resolve("success")
-        } else {
-            reject("no regions found")
+            console.log(newRegion)
+            Region.create(newRegion).then((region) => {
+                console.log("SAKJDAKJASDKJASKJKASDKASD")
+                console.log(region)
+                resolve()
+            }).catch((err) => {
+                reject(err)
+            })
         }
     })
 }
 
+function addArticle(newArticle) {
+    return new Promise((resolve, reject) => {
+        if (newArticle) {
+            NewsArticle.create(newArticle).then(() => {
+                resolve()
+            }).catch((err) => {
+                reject(err)
+            })
+        }
+    })
+}
 
+function getRegionByID(id) {
+    return new Promise((resolve, reject) => {
+        Region.findOne({
+            where: {
+                regionID: id
+            }
+        }).then((region) => {
+            resolve(region)
 
+        }).catch((err) => {
+            reject(err)
+        })
+    })
+}
+
+function deleteRegion(id) {
+    return new Promise((resolve, reject) => {
+        Region.destroy({
+            where: {
+                regionID: id
+            }
+        }).then(() => {
+            resolve()
+
+        }).catch((err) => {
+            reject(err)
+        })
+    })
+}
 
 
 module.exports = {
@@ -181,34 +196,38 @@ module.exports = {
     getNewsByRegion,
     getRegions,
     addRegion,
-    summarizeArticle
+    summarizeArticle,
+    getRegionByID,
+    deleteRegion,
+    addArticle
 }
 
 
 
-        // sequelize
-        // .sync()
-        // .then( async () => {
-        //   try{
-        //     await Region.bulkCreate(regionsData);
-        //     await News.bulkCreate(newsData); 
-        //     console.log("-----");
-        //     console.log("data inserted successfully");
-        //   }catch(err){
-        //     console.log("-----");
-        //     console.log(err.message);
-      
-        //     // NOTE: If you receive the error:
-      
-        //     // insert or update on table "Sets" violates foreign key constraint "Sets_theme_id_fkey"
-      
-        //     // it is because you have a "set" in your collection that has a "theme_id" that does not exist in the "themeData".   
-      
-        //     // To fix this, use PgAdmin to delete the newly created "Themes" and "Sets" tables, fix the error in your .json files and re-run this code
-        //   }
-      
-        //   process.exit();
-        // })
-        // .catch((err) => {
-        //   console.log('Unable to connect to the database:', err);
-        // });
+
+// sequelize
+// .sync()
+// .then( async () => {
+//   try{
+//     await Region.bulkCreate(regionsData);
+//     await NewsArticle.bulkCreate(newsData); 
+//     console.log("-----");
+//     console.log("data inserted successfully");
+//   }catch(err){
+//     console.log("-----");
+//     console.log(err.message);
+
+//     // NOTE: If you receive the error:
+
+//     // insert or update on table "Sets" violates foreign key constraint "Sets_theme_id_fkey"
+
+//     // it is because you have a "set" in your collection that has a "theme_id" that does not exist in the "themeData".   
+
+//     // To fix this, use PgAdmin to delete the newly created "Themes" and "Sets" tables, fix the error in your .json files and re-run this code
+//   }
+
+//   process.exit();
+// })
+// .catch((err) => {
+//   console.log('Unable to connect to the database:', err);
+// })
