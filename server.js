@@ -12,20 +12,17 @@ app.use(express.static("public"))
 app.set("view engine", "ejs")
 app.use(express.urlencoded({ extended: true }))
 
-app.get("/", (req, res) => {
-    // newsService.getNews().then((data) => {
-    //     res.send(data)
-    // })
-    
+app.get("/", (req, res) => {    
     res.redirect("/news")
-    console.log("test")
 })
 
 app.get("/news", (req, res) => {
 
     if (req.query.region) {
         newsService.getNewsByRegion(req.query.region).then((newsByRegion) => {
-            res.send(newsByRegion)
+            res.render('news', {
+                news: newsByRegion
+            })
         }).catch((err) => {
             // res.send(err)
             console.log(err)
@@ -45,9 +42,23 @@ app.get("/news", (req, res) => {
 
 app.get("/news/add", (req, res) => {
     // form
-    res.render('newArticle')
-
+    newsService.getRegions().then((regions) => {
+        res.render('newArticle', {
+            regions: regions
+        })
+    })
 })
+
+app.post("/news/add", (req, res) => {
+    // console.log(req.body)
+    newsService.addArticle(req.body).then(() => {
+        res.redirect("/news")
+    }).catch((err) => {
+        res.send(err)
+        console.log(err)
+    })
+})
+
 
 app.get("/news/:id", (req, res) => {
     newsService.getNewsByID(req.params.id).then((news) => {
@@ -68,6 +79,8 @@ app.get("/regions", (req, res) => {
 
 })
 
+
+
 app.get("/regions/add", (req,res) => {
     res.render('newRegion')
 })
@@ -76,9 +89,31 @@ app.post("/regions/add", (req, res) => {
     // console.log(req.body)
     newsService.addRegion(req.body).then(() => {
         res.redirect("/regions")
+    }).catch((err) => {
+        res.send(err)
+        console.log(err)
     })
 })
 
+app.get("/regions/delete/:id", (req, res) => {
+    newsService.deleteRegion(req.params.id).then(() => {
+        res.redirect("/regions")
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
+app.get("/regions/:id", (req, res) => {
+    newsService.getRegionByID(req.params.id).then((region) => {
+        res.render("regions", {
+            regions: [region]
+        })
+    }).catch((err) => {
+        res.send(err)
+        console.log(err)
+    })
+
+})
 
 
 app.get("/about", (req, res) => {
@@ -91,8 +126,10 @@ app.get("/about", (req, res) => {
 
 app.post("/summarize", (req, res) => {
     
-    newsService.summarizeArticle(req.body).then((data) => {
-        console.log(data)
+    newsService.summarizeArticle(req.body).then((gptResponse) => {
+        res.render('news', {
+
+        })
     })
 })
 
