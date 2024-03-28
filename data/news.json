@@ -1,6 +1,5 @@
 [
     {
-        "articleID":1,
         "title":"Michael Spavor’s lawyer says legal fight with Ottawa is 'resolved'",
         "description":"xyz",
         "date":"2024/01/01",
@@ -8,7 +7,6 @@
         "regionID":1
     },
     {
-        "articleID":2,
         "title":"Canadian family of 5 killed in Nashville plane crash identified",
         "description":"xyz",
         "date":"2024/01/01",
@@ -16,7 +14,6 @@
         "regionID":1
     },
     {
-        "articleID":3,
         "title":"‘Hypervaccinated’: Doctors study man who’s had 217 COVID-19 vaccines",
         "description":"xyz",
         "date":"2024/01/01",
@@ -24,7 +21,6 @@
         "regionID":1
     },
     {
-        "articleID":4,
         "title":"Albert Einstein College of Medicine Goes Tuition-Free After $1 Billion Donation",
         "description":"xyz",
         "date":"2024/01/01",
