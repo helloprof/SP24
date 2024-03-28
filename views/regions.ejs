@@ -18,6 +18,8 @@
 
     })
   </script>
+  <script src="https://kit.fontawesome.com/efeb3f9255.js" crossorigin="anonymous"></script>
+
   <title>SP24 News</title>
 </head>
 
@@ -32,14 +34,27 @@
       <% regions.forEach((region)=> { %>
 
 
-        <div class="card w-72 gap-2 bg-base-100 shadow-xl">
+        <div class="card gap-2 bg-base-100 shadow-xl m-4 p-4">
           <figure><img src="<%=region.image%>" alt="article" /></figure>
           <div class="card-body">
             <h2 class="card-title">
-              <%=region.region%>
+              <%=region.name%>
             </h2>
 
           </div>
+          <div class="grid grid-cols-2 gap-1">
+
+            <a href="/regions/<%=region.regionID%>" class="btn btn-secondary w-full">
+              <i class="fa-solid fa-circle-info"></i>
+            </a>
+            <!-- <a href="/regions/<%=region.regionID%>" class="btn btn-secondary w-full">
+              <i class="fa-solid fa-pen"></i>
+            </a> -->
+            <a href="/regions/delete/<%=region.regionID%>" class="btn btn-error w-full">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </div>
+
         </div>
 
         <% }) %>
