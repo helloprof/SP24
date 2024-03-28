@@ -19,13 +19,18 @@
                 <input type="text" class="grow" placeholder="description" name="description" id="description"/>
             </label>
             <label class="input input-bordered flex items-center gap-2">
-                <input type="text" class="grow" placeholder="fullText" name="fullText" id="fullText"/>
-            </label>
-            <label class="input input-bordered flex items-center gap-2">
                 <input type="date" class="grow" placeholder="date" name="date" id="date"/>
             </label>
             <label class="input input-bordered flex items-center gap-2">
-                <input type="file" class="grow" placeholder="thumbnail" name="thumbnail" id="thumbnail"/>
+                <input type="text" class="grow" placeholder="image" name="image" id="image"/>
+            </label>
+            <label class="input input-bordered flex items-center gap-2">
+                <select class="select w-full max-w-xs">
+                    <option disabled selected>Select Region</option>
+                    <% regions.forEach((region) => {%>
+                        <option value="<%=region.regionID%>"><%=region.name%></option>
+                    <% })%>
+                  </select>
             </label>
             <button class="btn btn-success w-full" type="submit">Submit</button>
         </form>
