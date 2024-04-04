@@ -2,6 +2,7 @@ const express = require('express'); // "require" the Express module
 const app = express(); // obtain the "app" object
 const HTTP_PORT = 8080; // assign a port
 const newsService = require("./modules/newsService")
+const userService = require("./modules/userService")
 const path = require("path")
 const env = require("dotenv")
 env.config()
@@ -133,10 +134,37 @@ app.post("/summarize", (req, res) => {
     })
 })
 
+app.get("/login", (req, res) => {
+    res.render("login")
+})
+
+app.post("/login", (req, res) => {
+    console.log(req.body)
+    // do something
+    res.redirect("/news")
+})
+
+app.get("/register", (req, res) => {
+    res.render("register")
+})
+
+app.post("/register", (req, res) => {
+    console.log(req.body)
+    userService.register(req.body).then(() => {
+        res.redirect("/login")
+    })
+    // do something
+    // res.redirect("/login")
+})
+
+
 app.use((req, res, next) => {
     res.status(404).send("404, client error");
 });
 
-newsService.initialize().then(() => {
+
+newsService.initialize()
+.then(userService.initialize)
+.then(() => {
     app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
 })
