@@ -5,19 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/main.css" />
+  <script src="https://kit.fontawesome.com/efeb3f9255.js" crossorigin="anonymous"></script>
   <title>SP24 News</title>
 </head>
 
 <body>
   <%- include('partials/navbar') %>
-    <div class="grid grid-cols-4 gap-2">
+    <div class="grid grid-cols-3 gap-3">
 
       <% if (news.length> 0) { %>
 
         <% news.forEach((article)=> { %>
 
 
-          <div class="card w-96 bg-base-100 shadow-xl">
+          <div class="card w-full bg-base-100 shadow-xl">
             <figure><img src="<%=article.image%>" alt="article" /></figure>
             <div class="card-body">
               <h2 class="card-title">
@@ -27,16 +28,32 @@
                 <%=article.region%>
               </p>
               <div class="card-actions justify-end">
-                <a href="/news/<%=article.newsID%>" class="btn btn-primary">See Details</a>
+
+                <a href="/news/<%=article.newsID%>" class="btn btn-primary w-full">
+                  <i class="fa-solid fa-circle-info"></i>
+                </a>
+
+                <hr/>
                 <form class="w-full" action="/summarize" method="POST" enctype="application/x-www-form-urlencoded">
-                  <label class="input input-bordered flex items-center gap-2">
-                    <input type="text" class="grow" placeholder="Ask GPT-3!" name="articleQuery" id="articleQuery" />
-                  </label>
-                  <button class="btn btn-success w-full" type="submit">Submit</button>
+                  <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Ask ChatGPT!</span>
+                      </label>                    
+                      <input type="text" class="input input-bordered" placeholder="Tell me more about..." name="articleQuery" id="articleQuery" />
+                      </div>
+                  <hr/>
+
+                  <div class="form-control mt-6">
+                    <button class="btn btn-secondary">Submit</button>
+                  </div>                
                 </form>
                 <p id="response"></p>
               </div>
+              <a href="/news/delete/<%=article.newsID%>" class="btn btn-error w-full">
+                <i class="fa-solid fa-trash"></i>
+              </a>
             </div>
+            
           </div>
 
           <% }) %>
