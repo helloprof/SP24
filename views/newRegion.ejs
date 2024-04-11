@@ -11,15 +11,23 @@
 <body>
     <%- include('partials/navbar') %>
         <form method="POST" action="/regions/add" enctype="application/x-www-form-urlencoded">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Name</span>
+                  </label>
+            <input type="text" class="input input-bordered" placeholder="name" name="name" id="name"/>
 
-            <label class="input input-bordered flex items-center gap-2">
-                <input type="text" class="grow" placeholder="name" name="name" id="name"/>
-            </label>
-            <label class="input input-bordered flex items-center gap-2">
-                <input type="text" class="grow" placeholder="image" name="image" id="image"/>
-            </label>
-            <button class="btn btn-success w-full" type="submit">Submit</button>
-
+            </div>
+            
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Image</span>
+                  </label>
+                <input type="text" class="input input-bordered" placeholder="image" name="image" id="image"/>
+            </div>
+            <div class="form-control mt-6">
+                <button class="btn btn-secondary">Submit</button>
+              </div>
         </form>
 
 </body>
