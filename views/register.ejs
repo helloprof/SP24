@@ -10,24 +10,75 @@
 
 <body>
     <%- include('partials/navbar') %>
-    <h1>Register User</h1>
-        <form method="POST" action="/register" enctype="application/x-www-form-urlencoded">
+    <%if (successMessage) { %>
+        <div role="alert" class="alert alert-success">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span><%=successMessage%></span>
+          </div>
+        <%}%>
+    <%if (errorMessage) {%>
+        <div role="alert" class="alert alert-error">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <span><%=errorMessage%></span>
+          </div>
+    <%}%>
+
+    <!-- <h1>Login</h1>
+        <form method="POST" action="/login" enctype="application/x-www-form-urlencoded">
 
             <label class="input input-bordered flex items-center gap-2">
                 <input type="text" class="grow" placeholder="username" name="username" id="username"/>
             </label>
             <label class="input input-bordered flex items-center gap-2">
-                <input type="email" class="grow" placeholder="email" name="email" id="email"/>
-            </label>
-            <label class="input input-bordered flex items-center gap-2">
-                <input type="password" class="grow" placeholder="password" name="password" id="password"/>
-            </label>
-            <label class="input input-bordered flex items-center gap-2">
-                <input type="password" class="grow" placeholder="password2" name="password2" id="password2"/>
+                <input type="text" class="grow" placeholder="password" name="password" id="password"/>
             </label>
             <button class="btn btn-success w-full" type="submit">Submit</button>
 
         </form>
+        <br>
+        <a href="/register" class="btn btn-secondary w-full">Register</a> -->
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center ">
+              <div class="max-w-md">
+                <h1 class="text-5xl font-bold">Register</h1>
+      
+                <p class="py-6">Please provide your credentials below</p>
+                <a href="/login" class="btn btn-primary">Login</a>
+
+                <h1>    <%session.username%></h1>
+
+              </div>
+            </div>
+          </div>
+        <form method="POST" action="/register" class="card-body w-full">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Email</span>
+              </label>
+              <input type="email" placeholder="email" name="email" class="input input-bordered" required />
+            </div>
+            <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Username</span>
+                </label>
+                <input type="text" placeholder="username" name="username" class="input input-bordered" required />
+              </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label>
+              <input type="password" placeholder="password" name="password" class="input input-bordered" required />
+            </div>
+            <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Confirm Password</span>
+                </label>
+                <input type="password" placeholder="confirm password" name="password2" class="input input-bordered" required />
+              </div>
+            <div class="form-control mt-6">
+              <button class="btn btn-secondary">Register</button>
+            </div>
+          </form>
 
 </body>
 
